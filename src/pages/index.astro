@@ -4,6 +4,8 @@ import Icon from '../components/Icon.astro';
 import FloatingToggle from '../components/FloatingToggle.astro';
 import ComparisonSlider from '../components/ComparisonSlider.astro';
 import Lightbox from '../components/Lightbox.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { base } from '../lib/base';
 
 const features = [
   {
@@ -41,8 +43,8 @@ const features = [
 ];
 
 const screenshots = [
-  { caption: 'Batch processor', src: 'pictures/Batch View.png' },
-  { caption: 'Filter panel', src: 'pictures/Filter Panel.png' },
+  { caption: 'Batch processor', src: 'pictures/Batch View.png', width: 2560, height: 1440 },
+  { caption: 'Filter panel', src: 'pictures/Filter Panel.png', width: 2560, height: 1440 },
 ];
 
 const sysreqs = [
@@ -53,7 +55,26 @@ const sysreqs = [
   { label: 'VRAM', value: '6 GB +' },
 ];
 
-import { base } from '../lib/base';
+const videos = [
+  { src: 'https://www.youtube-nocookie.com/embed/bQ4f-w2gub0?rel=0', title: 'SpongeBob Season 1 remaster', caption: 'SpongeBob Season 1 remaster' },
+  { src: 'https://www.youtube-nocookie.com/embed/dPt9NtzQ_04?rel=0', title: 'VHS Restoration Sample', caption: 'VHS Restoration Sample' },
+];
+
+const filterCategories = [
+  { name: 'Deinterlacing', filters: ['QTGMC', 'BWDIF'] },
+  { name: 'Frame Interpolation', filters: ['RIFE'] },
+  { name: 'Restoration', filters: ['TemporalFix', 'Remove Dirt MC'] },
+  { name: 'Denoising', filters: ['DFTTest2', 'KNLMeans'] },
+  { name: 'Sharpening', filters: ['CAS Sharpen', 'LSFmod'] },
+  { name: 'Anti-Aliasing', filters: ['DAA', 'SangNom'] },
+  { name: 'Dehalo', filters: ['HQDering', 'FineDehalo'] },
+  { name: 'Debanding', filters: ['GradFun3', 'f3kdb'] },
+];
+
+const socialLinkClass = 'inline-flex h-8 w-8 items-center justify-center rounded-md border border-vk-border/10 text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text';
+const chipClass = 'inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20';
+const ctaPrimaryClass = 'inline-flex items-center gap-2 rounded-lg border border-vk-accent/25 px-5 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/50 hover:bg-vk-accent/5';
+const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border border-vk-border/10 px-5 py-2 text-sm text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text';
 ---
 
 <Layout grain>
@@ -72,38 +93,20 @@ import { base } from '../lib/base';
           <a href={`${base}introduction/`} class="hover:text-vk-text transition-colors">Docs</a>
           <a href={`${base}reference/troubleshooting/`} class="hidden hover:text-vk-text transition-colors md:inline">FAQ</a>
           <div class="flex items-center gap-2">
-            <a
-              href="https://github.com/Kim2091/vapourkit"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub"
-              class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-vk-border/10 text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text"
-            >
+            <a href="https://github.com/Kim2091/vapourkit" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class={socialLinkClass}>
               <Icon name="github" size={15} />
             </a>
-            <a
-              href="https://discord.gg/uYKMn2hGwB"
-              target="_blank"
-              rel="noopener"
-              aria-label="Discord"
-              class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-vk-border/10 text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text"
-            >
+            <a href="https://discord.gg/uYKMn2hGwB" target="_blank" rel="noopener noreferrer" aria-label="Discord" class={socialLinkClass}>
               <Icon name="discord" size={15} />
             </a>
-            <a
-              href="https://ko-fi.com/kim20913944"
-              target="_blank"
-              rel="noopener"
-              aria-label="Ko-fi"
-              class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-vk-border/10 text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text"
-            >
+            <a href="https://ko-fi.com/kim20913944" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi" class={socialLinkClass}>
               <Icon name="coffee" size={15} />
             </a>
           </div>
           <a
             href="https://ko-fi.com/s/2e5ebd456d"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="hidden rounded-md border border-vk-brand-gold/35 bg-vk-elevated px-3.5 py-1.5 font-medium text-vk-text transition-colors hover:border-vk-brand-gold/65 md:inline-block"
           >
             Download
@@ -113,6 +116,7 @@ import { base } from '../lib/base';
       <!-- Subheader: in-page anchors -->
       <nav
         class="subheader-nav flex h-9 items-center justify-start gap-8 overflow-x-auto whitespace-nowrap border-t border-vk-border/8 text-[11px] tracking-[0.12em] text-vk-text-subtle [-ms-overflow-style:none] [scrollbar-width:none] md:justify-center md:overflow-x-visible [&::-webkit-scrollbar]:hidden"
+        aria-label="Page sections"
       >
         <a href="#features" class="hover:text-vk-text-muted transition-colors">Features</a>
         <a href="#tour" class="hover:text-vk-text-muted transition-colors">Screenshots</a>
@@ -127,8 +131,7 @@ import { base } from '../lib/base';
     <!-- Hero -->
     <section class="relative overflow-hidden px-6 py-24 lg:py-36 text-center">
       <div
-        class="pointer-events-none absolute inset-0"
-        style="background: radial-gradient(ellipse 80% 60% at 15% 20%, var(--vk-hero-glow-1), transparent 50%), radial-gradient(ellipse 50% 40% at 85% 80%, var(--vk-hero-glow-2), transparent 60%);"
+        class="pointer-events-none absolute inset-0 hero-glow"
       >
       </div>
       <div class="relative z-10 mx-auto max-w-4xl">
@@ -144,7 +147,7 @@ import { base } from '../lib/base';
           <a
             href="https://ko-fi.com/s/2e5ebd456d"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="rounded-lg bg-vk-brand-gold px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-gold-soft"
           >
             Download Free
@@ -152,7 +155,7 @@ import { base } from '../lib/base';
           <a
             href="https://github.com/Kim2091/vapourkit"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="flex items-center gap-2 rounded-lg border border-vk-border/10 px-6 py-2.5 text-sm text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text"
           >
             <Icon name="github" size={16} />
@@ -171,6 +174,7 @@ import { base } from '../lib/base';
               class="block h-auto w-full rounded-xl"
               loading="eager"
               decoding="async"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -180,16 +184,7 @@ import { base } from '../lib/base';
     <!-- Features -->
     <section id="features" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-12 text-center">
-          <div
-            class="section-overline"
-          >
-            Features
-          </div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Everything you need.
-          </h2>
-        </div>
+        <SectionHeading overline="Features" title="Everything you need." />
         <div
           class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3"
         >
@@ -197,7 +192,7 @@ import { base } from '../lib/base';
             features.map((f) => (
               <div class={`group bg-vk-surface-2 p-6 rounded-xl border border-vk-border/5 transition-all duration-300 hover:-translate-y-1 hover:border-vk-accent/15 hover:shadow-lg hover:shadow-black/20 ${f.colSpan || ''}`}>
                 <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-vk-accent/25 bg-vk-accent/6 group-hover:border-vk-accent/40 group-hover:bg-vk-accent/10 transition-colors duration-300">
-                  <Icon name={f.icon as any} size={18} stroke="var(--sl-color-accent, #e9c46a)" />
+                  <Icon name={f.icon} size={18} stroke="rgb(var(--vk-accent))" />
                 </div>
                 <h3 class="text-sm font-semibold text-vk-text group-hover:text-vk-accent transition-colors duration-300">{f.title}</h3>
                 <p class="mt-2 text-xs leading-relaxed text-vk-text-muted">{f.desc}</p>
@@ -211,47 +206,28 @@ import { base } from '../lib/base';
     <!-- Before / After -->
     <section class="px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-10 text-center">
-          <div class="section-overline">Before / After</div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            See the difference.
-          </h2>
-        </div>
+        <SectionHeading overline="Before / After" title="See the difference." />
         <div class="space-y-10">
-          <figure class="group">
-            <div class="relative rounded-2xl border border-vk-border/8 bg-black/40 p-1 shadow-2xl shadow-black/40">
-              <div class="aspect-video relative overflow-hidden rounded-xl">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/bQ4f-w2gub0?rel=0"
-                  title="SpongeBob Season 1 remaster"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                  class="block h-full w-full"></iframe>
-                <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-vk-border/5 rounded-xl"></div>
+          {videos.map((v) => (
+            <figure>
+              <div class="relative rounded-2xl border border-vk-border/8 bg-black/40 p-1 shadow-2xl shadow-black/40">
+                <div class="aspect-video relative overflow-hidden rounded-xl">
+                  <iframe
+                    src={v.src}
+                    title={v.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    referrerpolicy="no-referrer"
+                    class="block h-full w-full"></iframe>
+                  <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-vk-border/5 rounded-xl"></div>
+                </div>
               </div>
-            </div>
-            <figcaption class="mt-3 text-center text-xs text-vk-text-subtle">
-              SpongeBob Season 1 remaster
-            </figcaption>
-          </figure>
-          <figure class="group">
-            <div class="relative rounded-2xl border border-vk-border/8 bg-black/40 p-1 shadow-2xl shadow-black/40">
-              <div class="aspect-video relative overflow-hidden rounded-xl">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/dPt9NtzQ_04?rel=0"
-                  title="VHS Restoration Sample"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                  class="block h-full w-full"></iframe>
-                <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-vk-border/5 rounded-xl"></div>
-              </div>
-            </div>
-            <figcaption class="mt-3 text-center text-xs text-vk-text-subtle">
-              VHS Restoration Sample
-            </figcaption>
-          </figure>
+              <figcaption class="mt-3 text-center text-xs text-vk-text-subtle">
+                {v.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
         <div class="mt-10">
           <ComparisonSlider label="Interactive comparison" />
@@ -262,19 +238,16 @@ import { base } from '../lib/base';
     <!-- Tour -->
     <section id="tour" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-10 text-center">
-          <div class="section-overline">Tour</div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            A look around.
-          </h2>
-        </div>
+        <SectionHeading overline="Tour" title="A look around." />
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {
             screenshots.map((s) => (
-              <figure data-lightbox class="group relative cursor-pointer overflow-hidden rounded-2xl border border-vk-border/5 bg-black/20 transition-all duration-300 hover:border-vk-border/10">
+              <figure data-lightbox tabindex="0" role="button" class="group relative cursor-pointer overflow-hidden rounded-2xl border border-vk-border/5 bg-black/20 transition-all duration-300 hover:border-vk-border/10">
                 <img
                   src={`${base}${s.src}`}
                   alt={s.caption}
+                  width={s.width}
+                  height={s.height}
                   class="block aspect-video w-full object-cover"
                   loading="lazy"
                   decoding="async"
@@ -297,80 +270,29 @@ import { base } from '../lib/base';
     <!-- Filters -->
     <section id="filters" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-3xl rounded-2xl border border-vk-border/5 bg-vk-surface-2 p-8 md:p-10">
-        <div class="mb-8 text-center">
-          <div class="section-overline">Filters</div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Bundled filters, or write your own.
-          </h2>
-          <p class="mt-3 text-sm text-vk-text-muted">
-            157 filters across 34 categories — deinterlace, denoise, sharpen, restore.
-          </p>
-        </div>
+        <SectionHeading
+          overline="Filters"
+          title="Bundled filters, or write your own."
+          description="157 filters across 34 categories — deinterlace, denoise, sharpen, restore."
+        />
         <div class="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Deinterlacing</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">QTGMC</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">BWDIF</div>
+          {filterCategories.map((cat) => (
+            <div>
+              <h3 class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">{cat.name}</h3>
+              <div class="flex flex-wrap gap-1.5">
+                {cat.filters.map((f) => (<div class={chipClass}>{f}</div>))}
+              </div>
             </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Frame Interpolation</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">RIFE</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Restoration</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">TemporalFix</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">Remove Dirt MC</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Denoising</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">DFTTest2</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">KNLMeans</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Sharpening</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">CAS Sharpen</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">LSFmod</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Anti-Aliasing</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">DAA</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">SangNom</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Dehalo</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">HQDering</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">FineDehalo</div>
-            </div>
-          </div>
-          <div>
-            <div class="mb-2 text-[11px] tracking-[0.08em] text-vk-text-subtle">Debanding</div>
-            <div class="flex flex-wrap gap-1.5">
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">GradFun3</div>
-              <div class="inline-flex rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">f3kdb</div>
-            </div>
-          </div>
+          ))}
         </div>
         <div class="mt-6 rounded-lg border border-dashed border-vk-border/10 px-4 py-3 text-center text-sm text-vk-text-muted transition-colors hover:border-vk-accent/20">
           + Custom filters — write your own VapourSynth scripts
         </div>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={`${base}filters/reference/`} class="inline-flex items-center gap-2 rounded-lg border border-vk-accent/25 px-5 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/50 hover:bg-vk-accent/5">
+          <a href={`${base}filters/reference/`} class={ctaPrimaryClass}>
             View all filters <Icon name="arrow-right" size={12} />
           </a>
-          <a href={`${base}filters/writing/`} class="inline-flex items-center gap-2 rounded-lg border border-vk-border/10 px-5 py-2 text-sm text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text">
+          <a href={`${base}filters/writing/`} class={ctaSecondaryClass}>
             Write your own <Icon name="arrow-right" size={12} />
           </a>
         </div>
@@ -380,35 +302,27 @@ import { base } from '../lib/base';
     <!-- Models -->
     <section id="models" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-3xl rounded-2xl border border-vk-border/5 bg-vk-surface-2 p-8 md:p-10">
-        <div class="mb-8 text-center">
-          <div class="section-overline">Models</div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Bundled models, or bring your own.
-          </h2>
-          <p class="mt-3 text-sm text-vk-text-muted">
-            VSR models are temporally aware — they see across frames for stable output. Image-based models process each frame independently.
-          </p>
-        </div>
+        <SectionHeading
+          overline="Models"
+          title="Bundled models, or bring your own."
+          description="VSR models are temporally aware — they see across frames for stable output. Image-based models process each frame independently."
+        />
         <div class="flex flex-wrap justify-center gap-2">
-          <div class="rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">
+          <div class={chipClass}>
             TFDAT
             <span class="ml-1.5 rounded-sm bg-vk-accent/12 px-1.5 py-0.5 text-[10px] text-vk-accent">VSR</span>
           </div>
-          <div class="rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">
-            AnimeSharpV4
-          </div>
-          <div class="rounded-lg border border-vk-border/5 bg-vk-bg px-4 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/20">
-            UltraSharpV2
-          </div>
+          <div class={chipClass}>AnimeSharpV4</div>
+          <div class={chipClass}>UltraSharpV2</div>
           <div class="rounded-lg border border-dashed border-vk-border/10 px-4 py-2 text-sm text-vk-text-muted transition-colors hover:border-vk-accent/20">
             + Custom ONNX
           </div>
         </div>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={`${base}models/included/`} class="inline-flex items-center gap-2 rounded-lg border border-vk-accent/25 px-5 py-2 text-sm text-vk-text transition-colors hover:border-vk-accent/50 hover:bg-vk-accent/5">
+          <a href={`${base}models/included/`} class={ctaPrimaryClass}>
             Browse models <Icon name="arrow-right" size={12} />
           </a>
-          <a href={`${base}models/custom-onnx/`} class="inline-flex items-center gap-2 rounded-lg border border-vk-border/10 px-5 py-2 text-sm text-vk-text-muted transition-colors hover:border-vk-border/20 hover:text-vk-text">
+          <a href={`${base}models/custom-onnx/`} class={ctaSecondaryClass}>
             Bring your own ONNX <Icon name="arrow-right" size={12} />
           </a>
         </div>
@@ -418,17 +332,8 @@ import { base } from '../lib/base';
     <!-- System requirements -->
     <section class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
-        <div class="mb-10 text-center">
-          <div
-            class="section-overline"
-          >
-            System Requirements
-          </div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Hardware needs.
-          </h2>
-        </div>
-        <div
+        <SectionHeading overline="System Requirements" title="Hardware needs." />
+        <dl
           class="mx-auto max-w-xl rounded-2xl border border-vk-border/5 bg-vk-surface-2 p-8 text-sm"
         >
           {
@@ -436,12 +341,12 @@ import { base } from '../lib/base';
               <div
                 class={`flex items-baseline justify-between gap-x-6 py-3 ${i < sysreqs.length - 1 ? 'border-b border-vk-border/5' : ''}`}
               >
-                <span class="font-mono text-xs text-vk-text-muted tracking-wide">{r.label}</span>
-                <span class="text-right text-vk-text">{r.value}</span>
+                <dt class="font-mono text-xs text-vk-text-muted tracking-wide">{r.label}</dt>
+                <dd class="text-right text-vk-text">{r.value}</dd>
               </div>
             ))
           }
-        </div>
+        </dl>
       </div>
     </section>
 
@@ -449,21 +354,14 @@ import { base } from '../lib/base';
     <section id="community" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-10">
         <div class="text-center md:px-8">
-          <div
-            class="section-overline"
-          >
-            Community
-          </div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Join the Discord.
-          </h2>
+          <SectionHeading overline="Community" title="Join the Discord." />
           <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-vk-text-muted">
             Share your results, find workflow files shared by others, get help, or request features.
           </p>
           <a
             href="https://discord.gg/uYKMn2hGwB"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="mt-7 inline-flex items-center gap-2 rounded-lg border border-vk-accent/30 bg-vk-surface-2 px-6 py-2.5 text-sm font-medium text-vk-text transition-colors hover:border-vk-accent/50 hover:bg-vk-accent/5"
           >
             <Icon name="discord" size={16} />
@@ -471,17 +369,14 @@ import { base } from '../lib/base';
           </a>
         </div>
         <div class="text-center md:px-8">
-          <div class="section-overline">Support</div>
-          <h2 class="font-display text-3xl font-normal text-vk-text sm:text-4xl">
-            Vapourkit is free. Tips help.
-          </h2>
+          <SectionHeading overline="Support" title="Vapourkit is free. Tips help." />
           <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-vk-text-muted">
             Donations support my work and help fund development.
           </p>
           <a
             href="https://ko-fi.com/kim20913944"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="mt-7 inline-flex items-center gap-2 rounded-lg bg-vk-brand-gold px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-gold-soft"
           >
             <Icon name="coffee" size={14} />
@@ -490,14 +385,14 @@ import { base } from '../lib/base';
         </div>
       </div>
     </section>
-
-    <!-- Credits footer -->
-    <footer
-      class="border-t border-vk-border/8 px-6 py-8 text-center text-[11px] text-vk-text-subtle"
-    >
-      Copyright &copy; {new Date().getFullYear()} Kim2091
-    </footer>
   </main>
+
+  <!-- Credits footer -->
+  <footer
+    class="border-t border-vk-border/8 px-6 py-8 text-center text-[11px] text-vk-text-subtle"
+  >
+    Copyright &copy; {new Date().getFullYear()} Kim2091
+  </footer>
 
   <FloatingToggle />
 

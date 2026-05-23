@@ -6,16 +6,12 @@
 :root,
 :root[data-theme="light"] {
   --vk-bg: 250 248 244;
-  --vk-surface: 255 255 252;
   --vk-surface-2: 243 241 236;
   --vk-elevated: 233 230 224;
   --vk-text: 28 26 22;
   --vk-text-muted: 90 85 75;
   --vk-text-subtle: 140 135 125;
   --vk-border: 28 26 22;
-  --vk-border-strong: 28 26 22;
-  --vk-border-alpha: 0.08;
-  --vk-border-strong-alpha: 0.14;
   --vk-hero-glow-1: rgba(233, 196, 106, 0.22);
   --vk-hero-glow-2: rgba(42, 157, 143, 0.14);
   --vk-accent: 184 138 43;
@@ -24,16 +20,12 @@
 
 :root[data-theme="dark"] {
   --vk-bg: 5 5 5;
-  --vk-surface: 12 12 12;
   --vk-surface-2: 17 17 17;
   --vk-elevated: 26 26 26;
   --vk-text: 244 241 234;
   --vk-text-muted: 154 149 138;
   --vk-text-subtle: 107 103 95;
   --vk-border: 244 241 234;
-  --vk-border-strong: 244 241 234;
-  --vk-border-alpha: 0.10;
-  --vk-border-strong-alpha: 0.16;
   --vk-hero-glow-1: rgba(233, 196, 106, 0.12);
   --vk-hero-glow-2: rgba(42, 157, 143, 0.08);
   --vk-accent: 233 196 106;
@@ -122,6 +114,10 @@ body.has-grain::after {
   .section-overline {
     @apply mb-2 text-[11px] tracking-[0.12em] text-vk-accent;
   }
+
+  .hero-glow {
+    background: radial-gradient(ellipse 80% 60% at 15% 20%, var(--vk-hero-glow-1), transparent 50%), radial-gradient(ellipse 50% 40% at 85% 80%, var(--vk-hero-glow-2), transparent 60%);
+  }
 }
 
 /* Animations */
@@ -133,20 +129,6 @@ body.has-grain::after {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotateX(4deg) rotateY(-2deg);
-  }
-  50% {
-    transform: translateY(-6px) rotateX(3.5deg) rotateY(-1.5deg);
   }
 }
 
@@ -177,22 +159,11 @@ body.has-grain::after {
   opacity: 0;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease forwards;
-  opacity: 0;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 .animate-float-simple {
   animation: floatSimple 6s ease-in-out infinite;
 }
 
-.delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
 .delay-700 { animation-delay: 0.7s; }
@@ -217,14 +188,12 @@ body.has-grain::after {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
-  .animate-fade-in,
-  .animate-float,
   .animate-float-simple {
     animation: none;
     opacity: 1;
     transform: none;
   }
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
     transition: none;

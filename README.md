@@ -12,13 +12,13 @@ npm install
 # Generate the filter reference from a sibling vapourkit checkout
 npm run gen:filters
 
-# Generate the OG social preview image (1200×630, center-crop from Main Screen.png)
+# Generate the OG social preview image (1200x630 JPEG, center-crop from Main Screen.png)
 npm run gen:og
 
 # Dev server (hot reload)
 npm run dev
 
-# Production build (run gen:filters and gen:og first)
+# Production build (auto-runs gen:filters and gen:og via prebuild)
 npm run build
 
 # Preview the production build
@@ -48,37 +48,44 @@ src/
       reference/
       development/
   components/
-    Icon.astro               # Inline SVG icon set (lucide-style)
+    Icon.astro               # 16 inline SVG icons (lucide-style, aria-hidden)
     FloatingToggle.astro     # Fixed bottom-right theme toggle + scroll-to-top
     StarlightFooter.astro    # Wraps Starlight footer + FloatingToggle
-    Lightbox.astro           # Fullscreen image modal (Tour section)
-    ComparisonSlider.astro   # Before/after CSS slider (placeholder)
+    Lightbox.astro           # Fullscreen image modal with focus trap
+    ComparisonSlider.astro   # Before/after CSS range-input slider
+    SectionHeading.astro     # Reusable section header (overline + title + description)
   layouts/
     Layout.astro             # Landing page layout
   lib/
     base.ts                  # Normalized BASE_URL helper
   styles/
-    tailwind.css             # Tailwind + custom utilities (grain, section-overline, etc.)
+    tailwind.css             # Tailwind + custom utilities (grain, section-overline, hero-glow, etc.)
     starlight.css            # Starlight theme overrides + grain safety net
   assets/
     wordmark.svg
 scripts/
-  generateFilterDocs.ts      # Reads .vkfilter files → src/content/docs/filters/reference.md
-  generateOgImage.ts         # Sharp resize Main Screen.png → public/og.png
+  generateFilterDocs.ts      # Reads .vkfilter files -> src/content/docs/filters/reference.md
+  generateOgImage.ts         # Sharp resize Main Screen.png -> public/og.jpg (JPEG, 85% quality)
 astro.config.mjs             # Starlight + Tailwind integrations + sidebar
 tailwind.config.mjs          # Theme tokens (RGB triplets for opacity modifiers)
-.github/workflows/deploy.yml # CI: checkout → gen:filters → gen:og → build validation
+.github/workflows/build.yml  # CI: checkout -> gen:filters -> gen:og -> build validation
 ```
 
 The landing page lives outside the Starlight content collection so it can be fully custom. All docs live at root-level URLs (`/installation`, `/guides/basic-usage`, etc.) — there is no `/docs/` prefix.
 
 ## CI
 
-GitHub Actions validates the build on every push to `main`. The workflow checks out the Vapourkit desktop repo alongside this one, then runs `gen:filters`, `gen:og`, and `build` to confirm the site compiles.
+GitHub Actions validates the build on every push and PR to `main`. The workflow:
+1. Checks out the Vapourkit desktop repo alongside this one
+2. Installs deps with npm cache enabled
+3. Runs `gen:filters`, `gen:og`, and `astro build`
+4. Uploads the `dist/` directory as a build artifact
+
+Build validation only — no deployment step.
 
 ## Refreshing the filter reference
 
-The filter reference page is generated from `.vkfilter` files in the Vapourkit repo's `include/plugins/plugin_filters/` and `include/filter_templates/` directories. Re-run `npm run gen:filters` (or push to `main` to trigger CI) after adding or modifying filters upstream.
+The filter reference page is generated from `.vkfilter` files in the Vapourkit repo's `include/plugins/plugin_filters/` and `include/filter_templates/` directories. Re-run `npm run gen:filters` (or push/PR to `main` to trigger CI) after adding or modifying filters upstream.
 
 ## License
 

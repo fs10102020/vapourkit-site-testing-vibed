@@ -34,8 +34,6 @@ starlight-theme-select {
   --sl-color-hairline-light: rgba(244, 241, 234, 0.06);
   --sl-color-hairline: rgba(244, 241, 234, 0.10);
   --sl-color-hairline-shade: rgba(244, 241, 234, 0.14);
-
-  --sl-font: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
 }
 
 :root,
@@ -66,7 +64,9 @@ starlight-theme-select {
   --sl-color-hairline-light: rgba(28, 26, 22, 0.06);
   --sl-color-hairline: rgba(28, 26, 22, 0.08);
   --sl-color-hairline-shade: rgba(28, 26, 22, 0.12);
+}
 
+:root {
   --sl-font: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
 }
 

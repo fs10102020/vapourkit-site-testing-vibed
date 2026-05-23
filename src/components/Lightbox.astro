@@ -1,7 +1,7 @@
-<div class="lightbox-overlay" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+<div class="lightbox-overlay" id="lightbox" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Image preview">
   <button class="lightbox-close" aria-label="Close preview">&times;</button>
   <div class="lightbox-frame">
-    <img class="lightbox-img" src="" alt="" loading="eager" />
+    <img class="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" loading="eager" />
   </div>
   <a class="lightbox-link" href="" target="_blank" rel="noopener">View full image</a>
 </div>
@@ -92,6 +92,9 @@
 
 <script is:inline>
   (() => {
+    if (window.__vkLightboxInit) return;
+    window.__vkLightboxInit = true;
+
     const overlay = document.getElementById('lightbox');
     if (!overlay) return;
 
@@ -99,34 +102,60 @@
     const link = overlay.querySelector('.lightbox-link');
     const closeBtn = overlay.querySelector('.lightbox-close');
 
-    const triggers = document.querySelectorAll('[data-lightbox]');
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    let lastTrigger = null;
 
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sourceImg = trigger.querySelector('img');
-        if (!sourceImg) return;
-        img.src = sourceImg.src;
-        img.alt = sourceImg.alt;
-        link.href = sourceImg.src;
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      });
-    });
+    const getFocusable = () => {
+      const nodes = overlay.querySelectorAll(focusableSelector);
+      return Array.from(nodes).filter((el) => !el.disabled && el.offsetParent !== null);
+    };
+
+    const trapFocus = (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = getFocusable();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+
+    const open = (trigger) => {
+      const sourceImg = trigger.querySelector('img');
+      if (!sourceImg) return;
+      lastTrigger = trigger;
+      img.src = sourceImg.src;
+      img.alt = sourceImg.alt;
+      link.href = sourceImg.src;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', trapFocus);
+      closeBtn.focus();
+    };
 
     const close = () => {
       overlay.classList.remove('active');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', trapFocus);
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
     };
 
-    closeBtn?.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) close();
-    });
-    document.addEventListener('keydown', (e) => {
+    const escapeHandler = (e) => {
       if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+    };
+    document.addEventListener('keydown', escapeHandler);
+
+    const triggers = document.querySelectorAll('[data-lightbox]');
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => { e.preventDefault(); open(trigger); });
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(trigger); }
+      });
     });
+
+    closeBtn?.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
   })();
 </script>

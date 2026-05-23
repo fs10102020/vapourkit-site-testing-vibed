@@ -114,9 +114,10 @@ const { before, after, label = 'Before / After' } = Astro.props
         }
       </style>
       <script>
-        const slider = document.currentScript?.previousElementSibling?.querySelector('.comparison-input') as HTMLInputElement | null;
-        const afterImg = document.currentScript?.previousElementSibling?.querySelector('.comparison-after') as HTMLImageElement | null;
-        const handle = document.currentScript?.previousElementSibling?.querySelector('.comparison-handle') as HTMLDivElement | null;
+        const container = document.currentScript?.parentElement?.querySelector('.comparison-input')?.parentElement;
+        const slider = container?.querySelector('.comparison-input') as HTMLInputElement | null;
+        const afterImg = container?.querySelector('.comparison-after') as HTMLImageElement | null;
+        const handle = container?.querySelector('.comparison-handle') as HTMLDivElement | null;
         if (slider) {
           const update = () => {
             const v = Number(slider.value);

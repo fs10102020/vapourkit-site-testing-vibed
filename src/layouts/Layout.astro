@@ -15,7 +15,7 @@ const {
 } = Astro.props;
 
 const site = Astro.site?.toString() || Astro.url.origin;
-const ogImageUrl = new URL(`${base}og.png`, site).href;
+const ogImageUrl = new URL(`${base}og.jpg`, site).href;
 ---
 
 <!doctype html>
