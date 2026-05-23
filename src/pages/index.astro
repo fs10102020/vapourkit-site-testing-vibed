@@ -43,8 +43,8 @@ const features = [
 ];
 
 const screenshots = [
-  { caption: 'Batch processor', src: 'pictures/Batch View.png', width: 2560, height: 1440 },
-  { caption: 'Filter panel', src: 'pictures/Filter Panel.png', width: 2560, height: 1440 },
+  { caption: 'Batch processor', src: 'pictures/Batch View.png' },
+  { caption: 'Filter panel', src: 'pictures/Filter Panel.png' },
 ];
 
 const sysreqs = [
@@ -140,8 +140,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
           <span class="text-vk-accent animate-fade-in-up delay-200">beautifully.</span>
         </h1>
         <p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-vk-text-muted animate-fade-in-up delay-400 sm:text-xl">
-          Free, open source video restoration for Windows. Real-time preview,
-          side-by-side comparison, batch processing, and AI support.
+          FOSS video restoration for Windows.
         </p>
         <div class="mt-10 flex flex-wrap justify-center gap-3 animate-fade-in-up delay-500">
           <a
@@ -204,7 +203,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     </section>
 
     <!-- Before / After -->
-    <section class="px-6 py-20 reveal">
+    <section id="tour" class="px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
         <SectionHeading overline="Before / After" title="See the difference." />
         <div class="space-y-10">
@@ -218,7 +217,6 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
-                    referrerpolicy="no-referrer"
                     class="block h-full w-full"></iframe>
                   <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-vk-border/5 rounded-xl"></div>
                 </div>
@@ -236,7 +234,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     </section>
 
     <!-- Tour -->
-    <section id="tour" class="border-t border-vk-border/8 px-6 py-20 reveal">
+    <section class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
         <SectionHeading overline="Tour" title="A look around." />
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -246,8 +244,6 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
                 <img
                   src={`${base}${s.src}`}
                   alt={s.caption}
-                  width={s.width}
-                  height={s.height}
                   class="block aspect-video w-full object-cover"
                   loading="lazy"
                   decoding="async"

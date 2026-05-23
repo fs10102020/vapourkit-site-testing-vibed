@@ -9,7 +9,7 @@ description: Complete reference of bundled VapourSynth filters in Vapourkit.
 
 ## Categories
 
-- [Anti-Aliasing](#anti-aliasing)
+- [Anti\-Aliasing](#anti-aliasing)
 - [Blurring](#blurring)
 - [Chroma](#chroma)
 - [Cleaning](#cleaning)
@@ -44,11 +44,11 @@ description: Complete reference of bundled VapourSynth filters in Vapourkit.
 - [Unresize](#unresize)
 - [Utility](#utility)
 
-## Anti-Aliasing
+## Anti\-Aliasing
 
 ### AA EEDI3 
 
-Anti-aliasing using EEDI3 edge-directed interpolation
+Anti\-aliasing using EEDI3 edge\-directed interpolation
 
 <details>
 <summary>Show code</summary>
@@ -67,7 +67,7 @@ clip = EEDI3().antialias(clip)
 
 ### AA SangNom 
 
-Single field anti-aliasing using SangNom edge-directed interpolation
+Single field anti\-aliasing using SangNom edge\-directed interpolation
 
 <details>
 <summary>Show code</summary>
@@ -89,7 +89,7 @@ clip = SangNom(aa=aa_strength).antialias(clip)
 
 ### Based AA 
 
-Advanced anti-aliasing using supersampling with edge detection masking
+Advanced anti\-aliasing using supersampling with edge detection masking
 
 <details>
 <summary>Show code</summary>
@@ -108,9 +108,9 @@ clip = based_aa(clip, rfactor=rfactor, mask_thr=mask_thr)
 
 </details>
 
-### DAA Anti-Aliasing 
+### DAA Anti\-Aliasing 
 
-Anti-aliasing with contra-sharpening by Didée, averages two independent interpolations
+Anti\-aliasing with contra\-sharpening by Didée, averages two independent interpolations
 
 <details>
 <summary>Show code</summary>
@@ -132,7 +132,7 @@ clip = daa(clip)
 
 ### Bilateral 
 
-Edge-preserving and noise-reducing smoothing using bilateral filter
+Edge\-preserving and noise\-reducing smoothing using bilateral filter
 
 <details>
 <summary>Show code</summary>
@@ -174,7 +174,7 @@ clip = box_blur(clip, radius=radius, passes=passes)
 
 ### Gauss Blur 
 
-Blurs the clip with a Gaussian Blur.
+Blurs the clip with a Gaussian Blur\.
 
 <details>
 <summary>Show code</summary>
@@ -190,7 +190,7 @@ clip = vsrgtools.gauss_blur(clip, sigma=5.0)
 
 ### Guided Filter 
 
-Edge-preserving guided filter for smoothing while maintaining edges
+Edge\-preserving guided filter for smoothing while maintaining edges
 
 <details>
 <summary>Show code</summary>
@@ -251,7 +251,7 @@ clip = FixChromaBleedingMod(clip, cx=4, cy=4, thr=4.0, strength=0.8, blur=False)
 
 ### Rainbow Smooth 
 
-Removes rainbow artifacts using edge-aware chroma smoothing
+Removes rainbow artifacts using edge\-aware chroma smoothing
 
 <details>
 <summary>Show code</summary>
@@ -295,7 +295,7 @@ clip = deblock_qed(clip, quant=(quant, quant), alpha=(alpha, alpha), beta=(beta,
 
 ### DeSpot 
 
-Removes temporal spots and artifacts using motion-compensated cleaning
+Removes temporal spots and artifacts using motion\-compensated cleaning
 
 <details>
 <summary>Show code</summary>
@@ -390,7 +390,7 @@ clip = RemoveDirt(clip, repmode=16, remgrainmode=17, limit=10)
 
 ### Remove Dirt MC 
 
-Removes dirt using motion-compensated temporal cleaning
+Removes dirt using motion\-compensated temporal cleaning
 
 <details>
 <summary>Show code</summary>
@@ -431,7 +431,7 @@ clip = Vinverse(clip, sstr=2.7, amnt=255, chroma=True, scl=0.25)
 
 ### Average Color Fix 
 
-Correct for color shift by matching the average color of the clip to that of the original input clip.
+Correct for color shift by matching the average color of the clip to that of the original input clip\.
 
 <details>
 <summary>Show code</summary>
@@ -448,7 +448,7 @@ clip = vs_colorfix.average(clip, original_clip_converted, radius=10)
 
 ### CLAHE 
 
-Contrast Limited Adaptive Histogram Equalization. Similar to Retinex
+Contrast Limited Adaptive Histogram Equalization\. Similar to Retinex
 
 <details>
 <summary>Show code</summary>
@@ -512,7 +512,7 @@ clip = core.std.Levels(clip, min_in=0, max_in=65535, min_out=0, max_out=65535, g
 
 ### Retinex 
 
-Powerful filter in dynamic range compression, local contrast enhancement, color constancy, or defogging. Similar to CLAHE.
+Powerful filter in dynamic range compression, local contrast enhancement, color constancy, or defogging\. Similar to CLAHE\.
 
 <details>
 <summary>Show code</summary>
@@ -528,7 +528,7 @@ clip = core.retinex.MSRCP(gray, sigma=[25,80,250])
 
 ### Shift Chroma _(bundled template)_
 
-If the chroma is misaligned with the luma, this helps correct it.
+If the chroma is misaligned with the luma, this helps correct it\.
 
 <details>
 <summary>Show code</summary>
@@ -569,7 +569,7 @@ clip = Tweak(clip, hue=None, sat=None, bright=None, cont=None, coring=True)
 
 ### Wavelet Color Fix 
 
-Correct for color shift by matching the average color of the clip to that of the original input clip. Better results than Average Color Fix, but much slower.
+Correct for color shift by matching the average color of the clip to that of the original input clip\. Better results than Average Color Fix, but much slower\.
 
 <details>
 <summary>Show code</summary>
@@ -615,7 +615,7 @@ clip = core.std.Interleave([clip_a, clip_b])
 
 ### Side by Side 
 
-Stacks the current clip next to the original clip.
+Stacks the current clip next to the original clip\.
 
 <details>
 <summary>Show code</summary>
@@ -631,7 +631,7 @@ clip = core.std.StackHorizontal([original_clip_resized, clip])
 
 ### Stack Horizontal 
 
-Stacks two clips side-by-side horizontally for comparison
+Stacks two clips side\-by\-side horizontally for comparison
 
 <details>
 <summary>Show code</summary>
@@ -650,7 +650,7 @@ clip = core.std.StackHorizontal([clip_left, clip_right])
 
 ### Stack Vertical 
 
-Stacks two clips vertically (top and bottom) for comparison
+Stacks two clips vertically \(top and bottom\) for comparison
 
 <details>
 <summary>Show code</summary>
@@ -695,7 +695,7 @@ from misc import Overlay
 
 ### Deband 
 
-Removes banding from the clip with the placebo debander.
+Removes banding from the clip with the placebo debander\.
 
 <details>
 <summary>Show code</summary>
@@ -734,7 +734,7 @@ clip = GradFun3(clip, thr=0.35, radius=16, elast=3.0, mask=2, mode=2, ampo=1, am
 
 ### Deblock QED 
 
-Postprocessed deblocking using full frequencies on edges, DCT-lowpassed on interiors
+Postprocessed deblocking using full frequencies on edges, DCT\-lowpassed on interiors
 
 <details>
 <summary>Show code</summary>
@@ -753,7 +753,7 @@ clip = Deblock_QED(clip, quant1=24, quant2=26, aOff1=1, bOff1=2, aOff2=1, bOff2=
 
 ### DPIR Denoise/Deblock 
 
-Deep Plug-and-Play Image Restoration is an AI spatial denoiser and deblocker.
+Deep Plug\-and\-Play Image Restoration is an AI spatial denoiser and deblocker\.
 
 <details>
 <summary>Show code</summary>
@@ -804,7 +804,7 @@ clip = dehalo_alpha(clip, lowsens=lowsens, highsens=highsens, ss=ss, darkstr=dar
 
 </details>
 
-### DeHalo Alpha (Old) 
+### DeHalo Alpha \(Old\) 
 
 Reduces halo artifacts with separate controls for dark and bright halos
 
@@ -866,7 +866,7 @@ clip = CQTGMC(clip, Sharpness=0.25, thSAD1=192, thSAD2=320, tff=True, openCL=Fal
 
 ### Deep Deinterlace 
 
-Three AI Deinterlacers. Input must be interlaced. This will double the frame rate, for example from 30i to 60p.
+Three AI Deinterlacers\. Input must be interlaced\. This will double the frame rate, for example from 30i to 60p\.
 
 <details>
 <summary>Show code</summary>
@@ -884,7 +884,7 @@ clip = vs_deepdeinterlace.YUV(clip, tff=True, deinterlacer=[1, 1], tta=[False, F
 
 ### Deinterlace BWDIF 
 
-Motion-adaptive deinterlacing using BWDIF with w3fdif and cubic interpolation algorithms
+Motion\-adaptive deinterlacing using BWDIF with w3fdif and cubic interpolation algorithms
 
 <details>
 <summary>Show code</summary>
@@ -907,7 +907,7 @@ clip = deinterlacer.deinterlace(clip)
 
 ### EEDI3 
 
-High-quality edge-directed deinterlacing using EEDI3 algorithm
+High\-quality edge\-directed deinterlacing using EEDI3 algorithm
 
 <details>
 <summary>Show code</summary>
@@ -928,7 +928,7 @@ clip = core.eedi3m.EEDI3(clip, field=field, dh=dh)
 
 ### NNEDI3 
 
-Neural network-based deinterlacing/upscaling using NNEDI3
+Neural network\-based deinterlacing/upscaling using NNEDI3
 
 <details>
 <summary>Show code</summary>
@@ -952,9 +952,9 @@ clip = deinterlacer.deinterlace(clip)
 
 </details>
 
-### QTGMC (New) 
+### QTGMC \(New\) 
 
-Quasi Temporal Gaussian Motion Compensated is an advanced deinterlacer with a wide range of features, including noise processing, support for repair of progressive material, precision source matching, shutter speed simulation, and more.
+Quasi Temporal Gaussian Motion Compensated is an advanced deinterlacer with a wide range of features, including noise processing, support for repair of progressive material, precision source matching, shutter speed simulation, and more\.
 
 <details>
 <summary>Show code</summary>
@@ -1060,9 +1060,9 @@ original_clip = clip
 
 </details>
 
-### QTGMC (Old) 
+### QTGMC \(Old\) 
 
-High-quality motion-compensated deinterlacing (QTGMC)
+High\-quality motion\-compensated deinterlacing \(QTGMC\)
 
 <details>
 <summary>Show code</summary>
@@ -1153,7 +1153,7 @@ if original_clip.format.id != clip.format.id:
 
 ### DFTTest2 
 
-Frequency domain denoising using DFT (Discrete Fourier Transform)
+Frequency domain denoising using DFT \(Discrete Fourier Transform\)
 
 <details>
 <summary>Show code</summary>
@@ -1172,7 +1172,7 @@ clip = DFTTest(clip, sigma=8.0)
 
 ### DPIR Denoise/Deblock 
 
-Deep Plug-and-Play Image Restoration is an AI spatial denoiser and deblocker.
+Deep Plug\-and\-Play Image Restoration is an AI spatial denoiser and deblocker\.
 
 <details>
 <summary>Show code</summary>
@@ -1198,7 +1198,7 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s="709")
 
 ### FFT3D 
 
-3D frequency-domain denoising using FFT (temporal + spatial)
+3D frequency\-domain denoising using FFT \(temporal \+ spatial\)
 
 <details>
 <summary>Show code</summary>
@@ -1221,7 +1221,7 @@ clip = core.fft3dfilter.FFT3DFilter(clip, sigma=sigma, bt=bt, bw=bw, bh=bh)
 
 ### KNLMeans Denoise 
 
-Non-local means denoising with GPU acceleration support
+Non\-local means denoising with GPU acceleration support
 
 <details>
 <summary>Show code</summary>
@@ -1238,9 +1238,9 @@ clip = KNLMeansCL(clip, d=None, a=None, s=None, h=None)
 
 </details>
 
-### MC_Degrain (Advanced) 
+### MC\_Degrain \(Advanced\) 
 
-Motion Compensated Degrain - temporal denoising using motion compensation for high-quality noise reduction
+Motion Compensated Degrain \- temporal denoising using motion compensation for high\-quality noise reduction
 
 <details>
 <summary>Show code</summary>
@@ -1272,9 +1272,9 @@ clip = mc_degrain(
 
 </details>
 
-### MC_Degrain (Simple) 
+### MC\_Degrain \(Simple\) 
 
-Motion Compensated Degrain - temporal denoising with motion compensation
+Motion Compensated Degrain \- temporal denoising with motion compensation
 
 <details>
 <summary>Show code</summary>
@@ -1301,7 +1301,7 @@ clip = mc_degrain(
 
 ### NLM Denoise 
 
-Non-Local Means Spatial Denoising Filter.
+Non\-Local Means Spatial Denoising Filter\.
 
 <details>
 <summary>Show code</summary>
@@ -1316,9 +1316,9 @@ clip = nl_means(clip, h=1.2, tr=1, a=2, s=4, backend=nl_means.Backend.ISPC)
 
 </details>
 
-### NLM Denoise (CUDA) 
+### NLM Denoise \(CUDA\) 
 
-Non-Local Means Spatial Denoising Filter. Requires an Nvidia GPU.
+Non\-Local Means Spatial Denoising Filter\. Requires an Nvidia GPU\.
 
 <details>
 <summary>Show code</summary>
@@ -1335,7 +1335,7 @@ clip = nl_means(clip, h=1.2, tr=1, a=2, s=4, backend=nl_means.Backend.CUDA)
 
 ### Oyster 
 
-High-quality denoising using BM3D with motion compensation
+High\-quality denoising using BM3D with motion compensation
 
 <details>
 <summary>Show code</summary>
@@ -1483,7 +1483,7 @@ clip = fadeout(clip, fadeframes=30)
 
 ### RIFE 
 
-AI frame interpolation to increase frame rate.
+AI frame interpolation to increase frame rate\.
 
 <details>
 <summary>Show code</summary>
@@ -1547,7 +1547,7 @@ clip = addDup(clip, thresh=0.3, debug=False)
 
 ### Delete Frames 
 
-Removes specified frames from the clip.
+Removes specified frames from the clip\.
 
 <details>
 <summary>Show code</summary>
@@ -1562,7 +1562,7 @@ clip = core.std.DeleteFrames(clip, frames=[0, 5, 6])
 
 ### Duplicate Frames 
 
-Duplicates specified frames.
+Duplicates specified frames\.
 
 <details>
 <summary>Show code</summary>
@@ -1597,7 +1597,7 @@ clip = core.std.FreezeFrames(clip, first=[first], last=[last], replacement=[repl
 
 ### Replace Frames 
 
-Replace specified frames with the same frames from another clip.
+Replace specified frames with the same frames from another clip\.
 
 <details>
 <summary>Show code</summary>
@@ -1610,9 +1610,9 @@ clip = core.vszip.RFS(clip, original_clip, frames=[10, 20, 30])
 
 </details>
 
-### Temporal Pad (Extend) 
+### Temporal Pad \(Extend\) 
 
-Extends a clip using various padding modes.
+Extends a clip using various padding modes\.
 
 <details>
 <summary>Show code</summary>
@@ -1632,7 +1632,7 @@ clip = vs_tiletools.extend(clip, start=0, end=0, mode="mirror")
 
 ### Assume FPS 
 
-Changes the reported FPS without modifying frames (reinterprets timing)
+Changes the reported FPS without modifying frames \(reinterprets timing\)
 
 <details>
 <summary>Show code</summary>
@@ -1730,7 +1730,7 @@ clip = sRestoreMUVs(clip, frate=None, omode=6, mode=2, thresh=16)
 
 ### Fill Drops RIFE 
 
-Fills dropped frames using RIFE AI-based interpolation
+Fills dropped frames using RIFE AI\-based interpolation
 
 <details>
 <summary>Show code</summary>
@@ -1749,7 +1749,7 @@ clip = fillWithRIFE(clip, firstframe=100, rifeModel=22, rifeTTA=False, rifeUHD=F
 
 ### Fill Drops SVP 
 
-Fills dropped frames using SVP (SmoothVideo Project) interpolation
+Fills dropped frames using SVP \(SmoothVideo Project\) interpolation
 
 <details>
 <summary>Show code</summary>
@@ -1811,7 +1811,7 @@ clip = rmf.out
 
 ### FGrain 
 
-Very high quality and realistic grain generator that animates the grain, adds opacity options, and support for YUV. Grain is only applied to luma. Requires an Nvidia GPU.
+Very high quality and realistic grain generator that animates the grain, adds opacity options, and support for YUV\. Grain is only applied to luma\. Requires an Nvidia GPU\.
 
 <details>
 <summary>Show code</summary>
@@ -1989,9 +1989,9 @@ clip = CPreview(clip, CL=10, CR=10, CT=10, CB=10, Frame=False, Time=False, Type=
 
 </details>
 
-### DAA Anti-Aliasing 
+### DAA Anti\-Aliasing 
 
-Anti-aliasing with contra-sharpening by Didée, averages two independent interpolations
+Anti\-aliasing with contra\-sharpening by Didée, averages two independent interpolations
 
 <details>
 <summary>Show code</summary>
@@ -2048,7 +2048,7 @@ clip = Debilinear(clip, width=1280, height=720, yuv444=False, gray=False)
 
 ### Deblock QED 
 
-Postprocessed deblocking using full frequencies on edges, DCT-lowpassed on interiors
+Postprocessed deblocking using full frequencies on edges, DCT\-lowpassed on interiors
 
 <details>
 <summary>Show code</summary>
@@ -2065,7 +2065,7 @@ clip = Deblock_QED(clip, quant1=24, quant2=26, aOff1=1, bOff1=2, aOff2=1, bOff2=
 
 </details>
 
-### DeHalo Alpha (Old) 
+### DeHalo Alpha \(Old\) 
 
 Reduces halo artifacts with separate controls for dark and bright halos
 
@@ -2124,7 +2124,7 @@ clip = Despline36(clip, width=1280, height=720, yuv444=False, gray=False)
 
 ### DeSpot 
 
-Removes temporal spots and artifacts using motion-compensated cleaning
+Removes temporal spots and artifacts using motion\-compensated cleaning
 
 <details>
 <summary>Show code</summary>
@@ -2143,7 +2143,7 @@ clip = DeSpot(clip)
 
 ### DFTTest2 
 
-Frequency domain denoising using DFT (Discrete Fourier Transform)
+Frequency domain denoising using DFT \(Discrete Fourier Transform\)
 
 <details>
 <summary>Show code</summary>
@@ -2200,7 +2200,7 @@ clip = fadeout(clip, fadeframes=30)
 
 ### Fill Drops RIFE 
 
-Fills dropped frames using RIFE AI-based interpolation
+Fills dropped frames using RIFE AI\-based interpolation
 
 <details>
 <summary>Show code</summary>
@@ -2219,7 +2219,7 @@ clip = fillWithRIFE(clip, firstframe=100, rifeModel=22, rifeTTA=False, rifeUHD=F
 
 ### Fill Drops SVP 
 
-Fills dropped frames using SVP (SmoothVideo Project) interpolation
+Fills dropped frames using SVP \(SmoothVideo Project\) interpolation
 
 <details>
 <summary>Show code</summary>
@@ -2392,7 +2392,7 @@ clip = KillerSpots(clip, limit=10, advanced=False)
 
 ### KNLMeans Denoise 
 
-Non-local means denoising with GPU acceleration support
+Non\-local means denoising with GPU acceleration support
 
 <details>
 <summary>Show code</summary>
@@ -2468,7 +2468,7 @@ clip = LUTDeRainbow(clip, cthresh=10, ythresh=10, y=True, linkUV=True)
 
 ### NNEDI3 Resample 
 
-High-quality resampling using NNEDI3 edge-directed interpolation
+High\-quality resampling using NNEDI3 edge\-directed interpolation
 
 <details>
 <summary>Show code</summary>
@@ -2526,7 +2526,7 @@ from misc import Overlay
 
 ### Oyster 
 
-High-quality denoising using BM3D with motion compensation
+High\-quality denoising using BM3D with motion compensation
 
 <details>
 <summary>Show code</summary>
@@ -2562,9 +2562,9 @@ clip = proToon(clip, strength=48, luma_cap=191, threshold=4, thinning=24, sharpe
 
 </details>
 
-### QTGMC (Old) 
+### QTGMC \(Old\) 
 
-High-quality motion-compensated deinterlacing (QTGMC)
+High\-quality motion\-compensated deinterlacing \(QTGMC\)
 
 <details>
 <summary>Show code</summary>
@@ -2583,7 +2583,7 @@ clip = QTGMC(clip, Preset='Slower', FPSDivisor=1, TFF=None)
 
 ### Rainbow Smooth 
 
-Removes rainbow artifacts using edge-aware chroma smoothing
+Removes rainbow artifacts using edge\-aware chroma smoothing
 
 <details>
 <summary>Show code</summary>
@@ -2621,7 +2621,7 @@ clip = RemoveDirt(clip, repmode=16, remgrainmode=17, limit=10)
 
 ### Remove Dirt MC 
 
-Removes dirt using motion-compensated temporal cleaning
+Removes dirt using motion\-compensated temporal cleaning
 
 <details>
 <summary>Show code</summary>
@@ -2736,7 +2736,7 @@ clip = sRestoreMUVs(clip, frate=None, omode=6, mode=2, thresh=16)
 
 ### Stabilize 
 
-CURRENTLY BROKEN - Stabilizes shaky video using motion estimation and compensation
+CURRENTLY BROKEN \- Stabilizes shaky video using motion estimation and compensation
 
 <details>
 <summary>Show code</summary>
@@ -2853,7 +2853,7 @@ clip = Vinverse(clip, sstr=2.7, amnt=255, chroma=True, scl=0.25)
 
 ### Limit Filter 
 
-Limits the difference between a filtered clip and its original to prevent over-filtering
+Limits the difference between a filtered clip and its original to prevent over\-filtering
 
 <details>
 <summary>Show code</summary>
@@ -2941,7 +2941,7 @@ clip = binarize(clip, thr=thr)
 
 ### Comb Mask 
 
-Masks leftover combing from deinterlacing or inverse telecining.
+Masks leftover combing from deinterlacing or inverse telecining\.
 
 <details>
 <summary>Show code</summary>
@@ -2957,7 +2957,7 @@ clip = core.vszip.CombMask(gray, cthresh = 6, mthresh = 9, expand = True, metric
 
 ### Comb Mask MT 
 
-Masks leftover combing from deinterlacing or inverse telecining.
+Masks leftover combing from deinterlacing or inverse telecining\.
 
 <details>
 <summary>Show code</summary>
@@ -3014,7 +3014,7 @@ clip = diff_mask(clip_a, clip_b, thr=thr)
 
 ### Edge Mask 
 
-Masks edges in white with various edge detection algorithms.
+Masks edges in white with various edge detection algorithms\.
 
 <details>
 <summary>Show code</summary>
@@ -3030,7 +3030,7 @@ clip = core.tcanny.TCanny(gray, sigma=0.5, mode=1, op=1, scale=1.0)
 
 ### Farid Edge Mask 
 
-Creates high-quality edge mask using Farid 5x5 edge detection
+Creates high\-quality edge mask using Farid 5x5 edge detection
 
 <details>
 <summary>Show code</summary>
@@ -3049,7 +3049,7 @@ clip = mask
 
 ### FDoG Edge Mask 
 
-Creates stylized edge mask using Flow-based Difference of Gaussians (FDoG)
+Creates stylized edge mask using Flow\-based Difference of Gaussians \(FDoG\)
 
 <details>
 <summary>Show code</summary>
@@ -3068,7 +3068,7 @@ clip = mask
 
 ### FreyChen Edge Mask 
 
-Creates edge mask using Frei-Chen G41 edge detection operator
+Creates edge mask using Frei\-Chen G41 edge detection operator
 
 <details>
 <summary>Show code</summary>
@@ -3107,7 +3107,7 @@ clip = luma_mask(clip, lthr=lthr, hthr=hthr)
 
 ### Maximum 
 
-Expands (dilates) a mask by growing bright regions
+Expands \(dilates\) a mask by growing bright regions
 
 <details>
 <summary>Show code</summary>
@@ -3145,7 +3145,7 @@ clip = inflate(clip, iterations=iterations)
 
 ### Minimum 
 
-Inpands (erodes) a mask by shrinking bright regions
+Inpands \(erodes\) a mask by shrinking bright regions
 
 <details>
 <summary>Show code</summary>
@@ -3183,7 +3183,7 @@ clip = deflate(clip, iterations=iterations)
 
 ### Motion Mask 
 
-Creates a mask of moving pixels. Every output pixel will be set to the absolute difference between the current frame and the previous frame.
+Creates a mask of moving pixels\. Every output pixel will be set to the absolute difference between the current frame and the previous frame\.
 
 <details>
 <summary>Show code</summary>
@@ -3199,7 +3199,7 @@ clip = core.motionmask.MotionMask(gray, th1=[10, 10, 10], th2=[10, 10, 10], tht=
 
 ### Normalize Mask 
 
-Normalizes a mask to use the full value range (stretches contrast)
+Normalizes a mask to use the full value range \(stretches contrast\)
 
 <details>
 <summary>Show code</summary>
@@ -3274,7 +3274,7 @@ clip = mask
 
 ### Scharr Edge Mask 
 
-Creates an edge mask using Scharr edge detection (improved Sobel) from vsmasktools
+Creates an edge mask using Scharr edge detection \(improved Sobel\) from vsmasktools
 
 <details>
 <summary>Show code</summary>
@@ -3371,7 +3371,7 @@ clip = bbmod(clip, cTop=0, cBottom=0, cLeft=0, cRight=0, thresh=128, blur=999)
 
 ### Crop 
 
-Crops a clip by the specified pixel amount.
+Crops a clip by the specified pixel amount\.
 
 <details>
 <summary>Show code</summary>
@@ -3407,7 +3407,7 @@ clip = CPreview(clip, CL=10, CR=10, CT=10, CB=10, Frame=False, Time=False, Type=
 
 ### Modulus 
 
-Pads or crops a clip so width and height are multiples of the given modulus. Useful for AI models that have such input limitations.
+Pads or crops a clip so width and height are multiples of the given modulus\. Useful for AI models that have such input limitations\.
 
 <details>
 <summary>Show code</summary>
@@ -3424,7 +3424,7 @@ clip = vs_tiletools.mod(clip, modulus=64, mode="mirror")
 
 ### Pad 
 
-Pads a clip with various padding modes.
+Pads a clip with various padding modes\.
 
 <details>
 <summary>Show code</summary>
@@ -3444,7 +3444,7 @@ clip = vs_tiletools.pad(clip, left=0, right=0, top=0, bottom=0, mode="mirror")
 
 ### NNEDI3 Resample 
 
-High-quality resampling using NNEDI3 edge-directed interpolation
+High\-quality resampling using NNEDI3 edge\-directed interpolation
 
 <details>
 <summary>Show code</summary>
@@ -3480,9 +3480,9 @@ clip = nnedi3_rpow2(clip, rfactor=2, correct_shift=True, kernel="spline36")
 
 </details>
 
-### Resize (%) _(bundled template)_
+### Resize \(%\) _(bundled template)_
 
-Resizes the clip to new dimensions via a scale factor.
+Resizes the clip to new dimensions via a scale factor\.
 
 <details>
 <summary>Show code</summary>
@@ -3497,9 +3497,9 @@ clip = basic_resize.scale(clip, scale=1.0, kernel="bilinear")
 
 </details>
 
-### Resize (Custom) _(bundled template)_
+### Resize \(Custom\) _(bundled template)_
 
-Resize example for advanced users.
+Resize example for advanced users\.
 
 <details>
 <summary>Show code</summary>
@@ -3526,9 +3526,9 @@ clip = core.resize.Bicubic(
 
 </details>
 
-### Resize (px) _(bundled template)_
+### Resize \(px\) _(bundled template)_
 
-Resizes the clip to new dimensions by providing them directly.
+Resizes the clip to new dimensions by providing them directly\.
 
 <details>
 <summary>Show code</summary>
@@ -3548,7 +3548,7 @@ clip = basic_resize.pixel(clip, width=720, height=480, kernel="bilinear")
 
 ### Dot Crawl Reducer 
 
-Spatial and temporal dot crawl reducer most effective in static or low motion scenes.
+Spatial and temporal dot crawl reducer most effective in static or low motion scenes\.
 
 <details>
 <summary>Show code</summary>
@@ -3567,7 +3567,7 @@ clip = core.resize.Point(clip_new, format=clip.format.id)
 
 ### Fine Dehalo 
 
-Advanced halo removal with masking and optional contra-sharpening to preserve line detail.
+Advanced halo removal with masking and optional contra\-sharpening to preserve line detail\.
 
 <details>
 <summary>Show code</summary>
@@ -3612,7 +3612,7 @@ clip = vsdehalo.fine_dehalo(
 
 ### Fine Dehalo2 
 
-Removes 2nd order halos (both bright and dark) from the clip.
+Removes 2nd order halos \(both bright and dark\) from the clip\.
 
 <details>
 <summary>Show code</summary>
@@ -3631,7 +3631,7 @@ clip = vsdehalo.fine_dehalo2(clip, mode=2, radius=2, mask_radius=2, brightstr=1.
 
 ### LGhost Deghost 
 
-Removes ghosting artifacts (halos offset to the side). Adjust shift values to match ghost positions.
+Removes ghosting artifacts \(halos offset to the side\)\. Adjust shift values to match ghost positions\.
 
 <details>
 <summary>Show code</summary>
@@ -3650,9 +3650,9 @@ clip = core.lghost.LGhost(clip, mode=[1, 1], shift=[-3, -6], intensity=[10, 6], 
 
 </details>
 
-### TemporalFix (AI) 
+### TemporalFix \(AI\) 
 
-Adds Temporal Coherence to Single Image AI Upscaling Models. More accurate and faster than the classic version.
+Adds Temporal Coherence to Single Image AI Upscaling Models\. More accurate and faster than the classic version\.
 
 <details>
 <summary>Show code</summary>
@@ -3675,9 +3675,9 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s="709")
 
 </details>
 
-### TemporalFix (Classic) 
+### TemporalFix \(Classic\) 
 
-Adds Temporal Coherence to Single Image AI Upscaling Models. This is the older cpu based version.
+Adds Temporal Coherence to Single Image AI Upscaling Models\. This is the older cpu based version\.
 
 <details>
 <summary>Show code</summary>
@@ -3698,9 +3698,9 @@ clip = vs_temporalfix.classic(clip, strength=strength, tr=tr, denoise=denoise, e
 
 </details>
 
-### Undistort (PyTorch) 
+### Undistort \(PyTorch\) 
 
-Removes distortions, turbulance, heat haze, or similar. PyTorch is slower, but has extra controls.
+Removes distortions, turbulance, heat haze, or similar\. PyTorch is slower, but has extra controls\.
 
 <details>
 <summary>Show code</summary>
@@ -3724,9 +3724,9 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s=709)
 
 </details>
 
-### Undistort (TensorRT) 
+### Undistort \(TensorRT\) 
 
-Removes distortions, turbulance, heat haze, or similar. TensorRT is faster, but has less controls.
+Removes distortions, turbulance, heat haze, or similar\. TensorRT is faster, but has less controls\.
 
 <details>
 <summary>Show code</summary>
@@ -3756,7 +3756,7 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s=709)
 
 ### CAS Sharpen _(bundled template)_
 
-Contrast Adaptive Sharpening Filter.
+Contrast Adaptive Sharpening Filter\.
 
 <details>
 <summary>Show code</summary>
@@ -3771,7 +3771,7 @@ clip = core.cas.CAS(clip, sharpness=0.5, planes=0)
 
 ### Contra Sharpening 
 
-Applies contra-sharpening to limit sharpening and prevent over-sharpening artifacts
+Applies contra\-sharpening to limit sharpening and prevent over\-sharpening artifacts
 
 <details>
 <summary>Show code</summary>
@@ -3815,7 +3815,7 @@ clip = fast_line_darken(clip, strength=strength, protection=protection)
 
 ### Fine Sharp 
 
-Applies FineSharp - fast realtime sharpening optimized for 1080p
+Applies FineSharp \- fast realtime sharpening optimized for 1080p
 
 <details>
 <summary>Show code</summary>
@@ -3854,7 +3854,7 @@ clip = LSFmod(clip, strength=100, Smode=2, Lmode=1, edgemode=1, overshoot=1, und
 
 ### SBR Sharpening 
 
-Applies SBR sharpening - high-pass filter with re-blurred difference subtraction
+Applies SBR sharpening \- high\-pass filter with re\-blurred difference subtraction
 
 <details>
 <summary>Show code</summary>
@@ -3892,7 +3892,7 @@ clip = unsharpen(clip, strength=strength)
 
 ### Warp Sharp 
 
-Aggressive edge-based sharpening using warp algorithm
+Aggressive edge\-based sharpening using warp algorithm
 
 <details>
 <summary>Show code</summary>
@@ -3916,7 +3916,7 @@ clip = core.warp.AWarpSharp2(clip, blur=blur, depth=depth)
 
 ### Stabilize 
 
-CURRENTLY BROKEN - Stabilizes shaky video using motion estimation and compensation
+CURRENTLY BROKEN \- Stabilizes shaky video using motion estimation and compensation
 
 <details>
 <summary>Show code</summary>
@@ -3933,9 +3933,9 @@ clip = Stab(clip, range=1, dxmax=4, dymax=4, mirror=0)
 
 </details>
 
-### Undistort (PyTorch) 
+### Undistort \(PyTorch\) 
 
-Removes distortions, turbulance, heat haze, or similar. PyTorch is slower, but has extra controls.
+Removes distortions, turbulance, heat haze, or similar\. PyTorch is slower, but has extra controls\.
 
 <details>
 <summary>Show code</summary>
@@ -3959,9 +3959,9 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s=709)
 
 </details>
 
-### Undistort (TensorRT) 
+### Undistort \(TensorRT\) 
 
-Removes distortions, turbulance, heat haze, or similar. TensorRT is faster, but has less controls.
+Removes distortions, turbulance, heat haze, or similar\. TensorRT is faster, but has less controls\.
 
 <details>
 <summary>Show code</summary>
@@ -4025,7 +4025,7 @@ if original_clip.format.id != clip.format.id:
 
 ### Clense 
 
-Removes temporal outliers (pixels that differ significantly from adjacent frames)
+Removes temporal outliers \(pixels that differ significantly from adjacent frames\)
 
 <details>
 <summary>Show code</summary>
@@ -4079,9 +4079,9 @@ clip = core.tmedian.TemporalMedian(clip, radius=radius)
 
 </details>
 
-### TemporalFix (AI) 
+### TemporalFix \(AI\) 
 
-Adds Temporal Coherence to Single Image AI Upscaling Models. More accurate and faster than the classic version.
+Adds Temporal Coherence to Single Image AI Upscaling Models\. More accurate and faster than the classic version\.
 
 <details>
 <summary>Show code</summary>
@@ -4104,9 +4104,9 @@ clip = core.resize.Point(clip, format=vs.YUV444P16, matrix_s="709")
 
 </details>
 
-### TemporalFix (Classic) 
+### TemporalFix \(Classic\) 
 
-Adds Temporal Coherence to Single Image AI Upscaling Models. This is the older cpu based version.
+Adds Temporal Coherence to Single Image AI Upscaling Models\. This is the older cpu based version\.
 
 <details>
 <summary>Show code</summary>
@@ -4132,7 +4132,7 @@ clip = vs_temporalfix.classic(clip, strength=strength, tr=tr, denoise=denoise, e
 
 ### Tile 
 
-Splits each frame into tiles of fixed dimensions.
+Splits each frame into tiles of fixed dimensions\.
 
 <details>
 <summary>Show code</summary>
@@ -4149,7 +4149,7 @@ clip = vs_tiletools.tile(clip, width=256, height=256, overlap=16, padding="mirro
 
 ### Untile 
 
-Automatically reassembles a clip tiled with the Tile filter, even if tiles were since resized.
+Automatically reassembles a clip tiled with the Tile filter, even if tiles were since resized\.
 
 <details>
 <summary>Show code</summary>
@@ -4169,7 +4169,7 @@ clip = vs_tiletools.untile(clip, fade=True)
 
 ### Flip Horizontal 
 
-Flips the clip horizontally (mirrors left to right)
+Flips the clip horizontally \(mirrors left to right\)
 
 <details>
 <summary>Show code</summary>
@@ -4184,7 +4184,7 @@ clip = core.std.FlipHorizontal(clip)
 
 ### Flip Vertical 
 
-Flips the clip vertically (mirrors top to bottom)
+Flips the clip vertically \(mirrors top to bottom\)
 
 <details>
 <summary>Show code</summary>
@@ -4199,7 +4199,7 @@ clip = core.std.FlipVertical(clip)
 
 ### Transpose 
 
-Transposes the clip (rotates 90 degrees and flips)
+Transposes the clip \(rotates 90 degrees and flips\)
 
 <details>
 <summary>Show code</summary>
@@ -4214,7 +4214,7 @@ clip = core.std.Transpose(clip)
 
 ### Turn 180 
 
-Rotates the clip 180 degrees (upside down)
+Rotates the clip 180 degrees \(upside down\)
 
 <details>
 <summary>Show code</summary>
@@ -4414,7 +4414,7 @@ clip = core.std.Loop(clip, times=times)
 
 ### Move Original Clip Reference 
 
-Moves the "original_clip" variable to here. That means, if it is later used (for example in the Color Fix filter), it will refer to this position in the workflow. Else it will refer to the very start of the workflow.
+Moves the "original\_clip" variable to here\. That means, if it is later used \(for example in the Color Fix filter\), it will refer to this position in the workflow\. Else it will refer to the very start of the workflow\.
 
 <details>
 <summary>Show code</summary>
@@ -4427,7 +4427,7 @@ original_clip = clip
 
 ### Read Image 
 
-Loads an image and converts it to a clip.
+Loads an image and converts it to a clip\.
 
 <details>
 <summary>Show code</summary>
@@ -4464,7 +4464,7 @@ clip = core.std.Reverse(clip)
 
 ### Scene Change Detection 
 
-Detects scene changes and adds _SceneChangePrev and _SceneChangeNext frame properties
+Detects scene changes and adds \_SceneChangePrev and \_SceneChangeNext frame properties
 
 <details>
 <summary>Show code</summary>
@@ -4483,7 +4483,7 @@ clip = sc_detect(clip, threshold=threshold)
 
 ### Set Frame Props 
 
-Sets frame properties (metadata) on clip
+Sets frame properties \(metadata\) on clip
 
 <details>
 <summary>Show code</summary>
@@ -4521,7 +4521,7 @@ clip = shift_clip(clip, offset=offset)
 
 ### Side by Side 
 
-Stacks the current clip next to the original clip.
+Stacks the current clip next to the original clip\.
 
 <details>
 <summary>Show code</summary>
@@ -4537,7 +4537,7 @@ clip = core.std.StackHorizontal([original_clip_resized, clip])
 
 ### Splice Clips 
 
-Splices/concatenates multiple clips together end-to-end
+Splices/concatenates multiple clips together end\-to\-end
 
 <details>
 <summary>Show code</summary>

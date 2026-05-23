@@ -21,7 +21,7 @@ export default {
       },
       fontFamily: {
         sans: ['Sora', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'system-ui', 'sans-serif'],
-        display: ['Instrument Serif', 'Georgia', 'serif'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono: ['Geist Mono', 'monospace'],
       },
     },
