@@ -14,6 +14,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VAPOURKIT_REPO_PATH: ${{ github.workspace }}/vapourkit-source
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout site repo
         uses: actions/checkout@v4
@@ -35,8 +38,6 @@ jobs:
         run: npm ci
 
       - name: Generate filter docs
-        env:
-          VAPOURKIT_REPO_PATH: ${{ github.workspace }}/vapourkit-source
         run: npm run gen:filters
 
       - name: Generate OG image
