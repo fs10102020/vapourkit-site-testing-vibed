@@ -1,7 +1,7 @@
 {
   "name": "vapourkit-site",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "engines": {
     "node": ">=20"
@@ -12,9 +12,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prebuild": "npm run gen:filters && npm run gen:og",
-    "gen:filters": "tsx scripts/generateFilterDocs.ts",
-    "gen:og": "tsx scripts/generateOgImage.ts"
+    "prebuild": "npm run gen:filters",
+    "gen:filters": "tsx scripts/generateFilterDocs.ts"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.30.6",
@@ -27,7 +26,6 @@
     "@astrojs/check": "^0.9.4",
     "@iarna/toml": "^2.2.5",
     "@types/node": "^22.10.0",
-    "sharp": "^0.33.5",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   }

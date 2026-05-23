@@ -85,10 +85,19 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     <div class="mx-auto max-w-6xl px-6">
       <!-- Main row: real destinations -->
       <div class="flex items-center justify-between py-3.5">
-        <a href={base} class="flex items-center gap-2.5">
-          <img src={`${base}favicon.svg`} alt="" class="h-6 w-6" />
-          <strong class="font-display text-lg font-normal tracking-tight">Vapourkit</strong>
-        </a>
+        <div class="flex items-center gap-8">
+          <a href={base} class="flex items-center gap-2.5">
+            <img src={`${base}favicon.svg`} alt="" class="h-6 w-6" />
+            <strong class="font-display text-lg font-normal tracking-tight">Vapourkit</strong>
+          </a>
+          <nav class="hidden md:flex items-center gap-6 text-sm text-vk-text-muted">
+            <a href="#features" class="section-link hover:text-vk-text transition-colors">Features</a>
+            <a href="#tour" class="section-link hover:text-vk-text transition-colors">Screenshots</a>
+            <a href="#filters" class="section-link hover:text-vk-text transition-colors">Filters</a>
+            <a href="#models" class="section-link hover:text-vk-text transition-colors">Models</a>
+            <a href="#community" class="section-link hover:text-vk-text transition-colors">Community</a>
+          </nav>
+        </div>
         <nav class="flex items-center gap-3 text-sm text-vk-text-muted md:gap-6">
           <a href={`${base}introduction/`} class="hover:text-vk-text transition-colors">Docs</a>
           <a href={`${base}reference/troubleshooting/`} class="hidden hover:text-vk-text transition-colors md:inline">FAQ</a>
@@ -113,16 +122,16 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
           </a>
         </nav>
       </div>
-      <!-- Subheader: in-page anchors -->
+      <!-- Subheader: in-page anchors (mobile only) -->
       <nav
-        class="subheader-nav flex h-9 items-center justify-start gap-8 overflow-x-auto whitespace-nowrap border-t border-vk-border/8 text-[11px] tracking-[0.12em] text-vk-text-subtle [-ms-overflow-style:none] [scrollbar-width:none] md:justify-center md:overflow-x-visible [&::-webkit-scrollbar]:hidden"
+        class="subheader-nav flex md:hidden h-9 items-center justify-start gap-8 overflow-x-auto whitespace-nowrap border-t border-vk-border/8 text-[11px] tracking-[0.12em] text-vk-text-subtle [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label="Page sections"
       >
-        <a href="#features" class="hover:text-vk-text-muted transition-colors">Features</a>
-        <a href="#tour" class="hover:text-vk-text-muted transition-colors">Screenshots</a>
-        <a href="#filters" class="hover:text-vk-text-muted transition-colors">Filters</a>
-        <a href="#models" class="hover:text-vk-text-muted transition-colors">Models</a>
-        <a href="#community" class="hover:text-vk-text-muted transition-colors">Community</a>
+        <a href="#features" class="section-link hover:text-vk-text-muted transition-colors">Features</a>
+        <a href="#tour" class="section-link hover:text-vk-text-muted transition-colors">Screenshots</a>
+        <a href="#filters" class="section-link hover:text-vk-text-muted transition-colors">Filters</a>
+        <a href="#models" class="section-link hover:text-vk-text-muted transition-colors">Models</a>
+        <a href="#community" class="section-link hover:text-vk-text-muted transition-colors">Community</a>
       </nav>
     </div>
   </header>
@@ -349,9 +358,9 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     <!-- Community + Support -->
     <section id="community" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-10">
-        <div class="text-center md:px-8">
+        <div class="text-center md:px-8 flex flex-col items-center">
           <SectionHeading overline="Community" title="Join the Discord." />
-          <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-vk-text-muted">
+          <p class="mx-auto mt-4 max-w-md flex-grow text-sm leading-relaxed text-vk-text-muted">
             Share your results, find workflow files shared by others, get help, or request features.
           </p>
           <a
@@ -364,9 +373,9 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
             <span>Join Discord</span>
           </a>
         </div>
-        <div class="text-center md:px-8">
+        <div class="text-center md:px-8 flex flex-col items-center">
           <SectionHeading overline="Support" title="Vapourkit is free. Tips help." />
-          <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-vk-text-muted">
+          <p class="mx-auto mt-4 max-w-md flex-grow text-sm leading-relaxed text-vk-text-muted">
             Donations support my work and help fund development.
           </p>
           <a
@@ -407,7 +416,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
       for (const entry of entries) {
         if (entry.isIntersecting) {
           const id = entry.target.id;
-          document.querySelectorAll('.subheader-nav a').forEach((a) => {
+          document.querySelectorAll('.section-link').forEach((a) => {
             a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
           });
         }

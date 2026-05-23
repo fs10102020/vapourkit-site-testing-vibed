@@ -1,4 +1,4 @@
-name: Build
+name: Deploy site to GitHub Pages
 
 on:
   push:
@@ -7,9 +7,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -40,14 +45,22 @@ jobs:
       - name: Generate filter docs
         run: npm run gen:filters
 
-      - name: Generate OG image
-        run: npm run gen:og
-
       - name: Build site
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: site-build
-          path: dist/
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

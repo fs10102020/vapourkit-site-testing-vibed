@@ -180,8 +180,8 @@ body.has-grain::after {
   transform: translateY(0);
 }
 
-/* Subheader nav active section indicator */
-.subheader-nav .active {
+/* Section nav active indicator (desktop header + mobile subheader) */
+.section-link.active {
   color: rgb(var(--vk-accent));
 }
 

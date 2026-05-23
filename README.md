@@ -12,13 +12,10 @@ npm install
 # Generate the filter reference from a sibling vapourkit checkout
 npm run gen:filters
 
-# Generate the OG social preview image (1200x630 JPEG, center-crop from Main Screen.png)
-npm run gen:og
-
 # Dev server (hot reload)
 npm run dev
 
-# Production build (auto-runs gen:filters and gen:og via prebuild)
+# Production build (auto-runs gen:filters via prebuild)
 npm run build
 
 # Preview the production build
@@ -65,23 +62,20 @@ src/
     wordmark.svg
 scripts/
   generateFilterDocs.ts      # Reads .vkfilter files -> src/content/docs/filters/reference.md
-  generateOgImage.ts         # Sharp resize Main Screen.png -> public/og.jpg (JPEG, 85% quality)
 astro.config.mjs             # Starlight + Tailwind integrations + sidebar
 tailwind.config.mjs          # Theme tokens (RGB triplets for opacity modifiers)
-.github/workflows/build.yml  # CI: checkout -> gen:filters -> gen:og -> build validation
+.github/workflows/deploy.yml  # CI: checkout -> gen:filters -> build -> deploy to GitHub Pages
 ```
 
 The landing page lives outside the Starlight content collection so it can be fully custom. All docs live at root-level URLs (`/installation`, `/guides/basic-usage`, etc.) — there is no `/docs/` prefix.
 
 ## CI
 
-GitHub Actions validates the build on every push and PR to `main`. The workflow:
+GitHub Actions builds and deploys on push to `main`, and validates on PRs. The workflow:
 1. Checks out the Vapourkit desktop repo alongside this one
 2. Installs deps with npm cache enabled
-3. Runs `gen:filters`, `gen:og`, and `astro build`
-4. Uploads the `dist/` directory as a build artifact
-
-Build validation only — no deployment step.
+3. Runs `gen:filters` and `astro build`
+4. Uploads the Pages artifact and deploys to GitHub Pages (push to main only; PRs validate without deploying)
 
 ## Refreshing the filter reference
 

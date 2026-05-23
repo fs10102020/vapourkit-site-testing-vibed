@@ -94,25 +94,7 @@ function groupByCategory(filters: VkFilter[]): Map<string, VkFilter[]> {
 }
 
 function escapeMD(s: string): string {
-  return s
-    .replace(/\\/g, '\\\\')
-    .replace(/`/g, '\\`')
-    .replace(/\*/g, '\\*')
-    .replace(/_/g, '\\_')
-    .replace(/\{/g, '\\{')
-    .replace(/\}/g, '\\}')
-    .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]')
-    .replace(/\(/g, '\\(')
-    .replace(/\)/g, '\\)')
-    .replace(/#/g, '\\#')
-    .replace(/\+/g, '\\+')
-    .replace(/\-/g, '\\-')
-    .replace(/\./g, '\\.')
-    .replace(/!/g, '\\!')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\|/g, '\\|');
+  return s.replace(/\|/g, '\\|');
 }
 
 function renderFilter(filter: VkFilter): string {
