@@ -2,7 +2,7 @@
 
 Marketing site and documentation for [Vapourkit](https://github.com/Kim2091/vapourkit).
 
-Built with [Astro](https://astro.build/) and [Starlight](https://starlight.astro.build/), deployed to GitHub Pages.
+Built with [Astro](https://astro.build/) and [Starlight](https://starlight.astro.build/).
 
 ## Local development
 
@@ -12,10 +12,13 @@ npm install
 # Generate the filter reference from a sibling vapourkit checkout
 npm run gen:filters
 
+# Generate the OG social preview image (1200×630, center-crop from Main Screen.png)
+npm run gen:og
+
 # Dev server (hot reload)
 npm run dev
 
-# Production build
+# Production build (run gen:filters and gen:og first)
 npm run build
 
 # Preview the production build
@@ -46,25 +49,32 @@ src/
       development/
   components/
     Icon.astro               # Inline SVG icon set (lucide-style)
+    FloatingToggle.astro     # Fixed bottom-right theme toggle + scroll-to-top
+    StarlightFooter.astro    # Wraps Starlight footer + FloatingToggle
+    Lightbox.astro           # Fullscreen image modal (Tour section)
+    ComparisonSlider.astro   # Before/after CSS slider (placeholder)
   layouts/
     Layout.astro             # Landing page layout
+  lib/
+    base.ts                  # Normalized BASE_URL helper
   styles/
-    tailwind.css             # Tailwind + custom utilities
-    starlight.css            # Starlight theme overrides
+    tailwind.css             # Tailwind + custom utilities (grain, section-overline, etc.)
+    starlight.css            # Starlight theme overrides + grain safety net
   assets/
     wordmark.svg
 scripts/
   generateFilterDocs.ts      # Reads .vkfilter files → src/content/docs/filters/reference.md
+  generateOgImage.ts         # Sharp resize Main Screen.png → public/og.png
 astro.config.mjs             # Starlight + Tailwind integrations + sidebar
-tailwind.config.mjs          # Theme tokens
-.github/workflows/deploy.yml # CI: build + deploy to GitHub Pages
+tailwind.config.mjs          # Theme tokens (RGB triplets for opacity modifiers)
+.github/workflows/deploy.yml # CI: checkout → gen:filters → gen:og → build validation
 ```
 
 The landing page lives outside the Starlight content collection so it can be fully custom. All docs live at root-level URLs (`/installation`, `/guides/basic-usage`, etc.) — there is no `/docs/` prefix.
 
-## Deployment
+## CI
 
-GitHub Actions builds the site on every push to `main` and deploys to GitHub Pages. The workflow checks out the Vapourkit repo alongside this one so the filter generator has access to the `.vkfilter` sources.
+GitHub Actions validates the build on every push to `main`. The workflow checks out the Vapourkit desktop repo alongside this one, then runs `gen:filters`, `gen:og`, and `build` to confirm the site compiles.
 
 ## Refreshing the filter reference
 
