@@ -1,0 +1,64 @@
+---
+import '../styles/tailwind.css';
+import { base } from '../lib/base';
+
+interface Props {
+  title?: string;
+  description?: string;
+  grain?: boolean;
+}
+
+const {
+  title = 'Vapourkit — Video Restoration for Windows',
+  description = 'Free, open source video restoration for Windows. Real-time preview, side-by-side comparison, batch processing, and AI support.',
+  grain = false,
+} = Astro.props;
+
+const site = Astro.site?.toString() || Astro.url.origin;
+const ogImageUrl = new URL(`${base}og.png`, site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="alternate icon" href={`${base}favicon.ico`} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <title>{title}</title>
+    <script is:inline>
+      // Dark mode is the default. Respect the user's stored preference (which
+      // matches Starlight's localStorage key, so toggling on either surface
+      // syncs to the other), and fall back to dark — not system preference.
+      (() => {
+        let stored;
+        try { stored = localStorage.getItem('starlight-theme'); } catch (_) {}
+        const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.add('js');
+        if (!stored) {
+          try { localStorage.setItem('starlight-theme', 'dark'); } catch (_) {}
+        }
+      })();
+    </script>
+  </head>
+  <body class={`bg-vk-bg text-vk-text antialiased${grain ? ' has-grain' : ''}`}>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:border focus:border-vk-border/10 focus:bg-vk-elevated focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-vk-text">
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

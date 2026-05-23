@@ -1,0 +1,131 @@
+---
+interface Props {
+  before?: string
+  after?: string
+  label?: string
+}
+
+const { before, after, label = 'Before / After' } = Astro.props
+---
+
+{
+  !before || !after ? (
+    <div class="relative overflow-hidden rounded-2xl border border-dashed border-vk-border/10 bg-vk-surface-2 p-12 text-center">
+      <div class="section-overline">{label}</div>
+      <p class="mt-2 text-sm text-vk-text-muted">
+        Drag the slider to compare the original against the restored output.
+      </p>
+      <div class="mx-auto mt-6 flex h-48 max-w-lg items-center justify-center rounded-xl border border-vk-border/5 bg-black/20">
+        <span class="font-display text-3xl italic text-vk-text-subtle/30">VS</span>
+      </div>
+    </div>
+  ) : (
+    <div class="comparison-slider relative overflow-hidden rounded-2xl border border-vk-border/8 bg-black/40 p-1 shadow-2xl shadow-black/40">
+      <div class="relative aspect-video overflow-hidden rounded-xl">
+        <img
+          src={before}
+          alt="Before restoration"
+          class="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          src={after}
+          alt="After restoration"
+          class="absolute inset-0 h-full w-full object-cover comparison-after"
+          style="clip-path: inset(0 50% 0 0);"
+          loading="lazy"
+          decoding="async"
+        />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          aria-label="Comparison slider"
+          class="comparison-input"
+        />
+        <div class="comparison-handle"></div>
+      </div>
+      <style>
+        .comparison-input {
+          appearance: none;
+          -webkit-appearance: none;
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          z-index: 10;
+          cursor: ew-resize;
+          margin: 0;
+        }
+        .comparison-input::-webkit-slider-thumb {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 4px;
+          height: 100%;
+          background: #e9c46a;
+          cursor: ew-resize;
+          border: none;
+          border-radius: 0;
+          box-shadow: 0 0 12px rgba(233, 196, 106, 0.5);
+        }
+        .comparison-input::-moz-range-thumb {
+          width: 4px;
+          height: 100%;
+          background: #e9c46a;
+          cursor: ew-resize;
+          border: none;
+          border-radius: 0;
+          box-shadow: 0 0 12px rgba(233, 196, 106, 0.5);
+        }
+        .comparison-handle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: #050505;
+          border: 3px solid #e9c46a;
+          pointer-events: none;
+          z-index: 11;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 16px rgba(233, 196, 106, 0.3);
+        }
+        .comparison-handle::before,
+        .comparison-handle::after {
+          content: "";
+          display: block;
+          width: 2px;
+          height: 12px;
+          background: #e9c46a;
+          border-radius: 1px;
+        }
+        .comparison-handle::after {
+          margin-left: 4px;
+        }
+        .comparison-handle::before {
+          margin-right: 4px;
+        }
+      </style>
+      <script>
+        const slider = document.currentScript?.previousElementSibling?.querySelector('.comparison-input') as HTMLInputElement | null;
+        const afterImg = document.currentScript?.previousElementSibling?.querySelector('.comparison-after') as HTMLImageElement | null;
+        const handle = document.currentScript?.previousElementSibling?.querySelector('.comparison-handle') as HTMLDivElement | null;
+        if (slider) {
+          const update = () => {
+            const v = Number(slider.value);
+            if (afterImg) afterImg.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+            if (handle) handle.style.left = `${v}%`;
+          };
+          slider.addEventListener('input', update);
+        }
+      </script>
+    </div>
+  )
+}
