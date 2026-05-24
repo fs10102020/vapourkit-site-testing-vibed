@@ -116,7 +116,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
             href="https://ko-fi.com/s/2e5ebd456d"
             target="_blank"
             rel="noopener noreferrer"
-            class="hidden rounded-md border border-vk-brand-gold/35 bg-vk-elevated px-3.5 py-1.5 font-medium text-vk-text transition-colors hover:border-vk-brand-gold/65 md:inline-block"
+            class="hidden rounded-md border border-vk-brand-purple/35 bg-vk-elevated px-3.5 py-1.5 font-medium text-vk-text transition-colors hover:border-vk-brand-purple/65 md:inline-block"
           >
             Download
           </a>
@@ -156,7 +156,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
             href="https://ko-fi.com/s/2e5ebd456d"
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-lg bg-vk-brand-gold px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-gold-soft"
+            class="rounded-lg bg-vk-brand-purple px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-purple-soft"
           >
             Download Free
           </a>
@@ -382,7 +382,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
             href="https://ko-fi.com/kim20913944"
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-7 inline-flex items-center gap-2 rounded-lg bg-vk-brand-gold px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-gold-soft"
+            class="mt-7 inline-flex items-center gap-2 rounded-lg bg-vk-brand-purple px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-vk-brand-purple-soft"
           >
             <Icon name="coffee" size={14} />
             <span>Ko-fi</span>
@@ -411,6 +411,16 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
       }
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+    document.querySelectorAll('.section-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
 
     const activeNavObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) {
