@@ -176,7 +176,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
           <div class="rounded-2xl border border-vk-border/5 bg-black/40 p-1.5 shadow-2xl shadow-black/50 animate-float-simple">
             <img
               src={`${base}pictures/Main Screen.png`}
-              alt="Vapourkit main upscale view"
+              alt="Screenshot of the VapourKit application showing the video upscaling interface with preview window, output controls, and filter panel"
               width="2065"
               height="1260"
               class="block h-auto w-full rounded-xl"
@@ -212,7 +212,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     </section>
 
     <!-- Before / After -->
-    <section id="tour" class="px-6 py-20 reveal">
+    <section id="before-after" class="px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
         <SectionHeading overline="Before / After" title="See the difference." />
         <div class="space-y-10">
@@ -243,7 +243,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
     </section>
 
     <!-- Tour -->
-    <section class="border-t border-vk-border/8 px-6 py-20 reveal">
+    <section id="tour" class="border-t border-vk-border/8 px-6 py-20 reveal">
       <div class="mx-auto max-w-6xl">
         <SectionHeading overline="Tour" title="A look around." />
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -417,7 +417,8 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
         }
       });
     });

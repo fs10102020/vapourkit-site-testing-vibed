@@ -3,7 +3,7 @@
   <div class="lightbox-frame">
     <img class="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" loading="eager" />
   </div>
-  <a class="lightbox-link" href="" target="_blank" rel="noopener">View full image</a>
+  <a class="lightbox-link" href="" target="_blank" rel="noopener noreferrer" aria-label="View full image (opens in new tab)">View full image</a>
 </div>
 
 <style>
@@ -87,6 +87,13 @@
 
   .lightbox-link:hover {
     opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox-overlay,
+    .lightbox-frame {
+      transition: none;
+    }
   }
 </style>
 

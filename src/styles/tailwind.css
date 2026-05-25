@@ -26,7 +26,7 @@
   --vk-elevated: 233 230 224;
   --vk-text: 28 26 22;
   --vk-text-muted: 90 85 75;
-  --vk-text-subtle: 140 135 125;
+  --vk-text-subtle: 110 105 95;
   --vk-border: 28 26 22;
   --vk-hero-glow-1: rgba(139, 92, 246, 0.18);
   --vk-hero-glow-2: rgba(34, 152, 255, 0.14);
@@ -118,6 +118,10 @@ body.has-grain::after {
   }
   p {
     margin: 0;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--vk-accent));
+    outline-offset: 2px;
   }
 }
 
@@ -212,6 +216,15 @@ body.has-grain::after {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .animate-fade-in-up,
   .animate-float-simple {
     animation: none;

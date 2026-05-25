@@ -24,7 +24,8 @@ import Icon from './Icon.astro';
   (() => {
     const up = document.getElementById('vk-scroll-up');
     if (up) {
-      up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' }));
       const update = () => {
         const isHidden = window.scrollY < 100;
         up.classList.toggle('hidden', isHidden);
