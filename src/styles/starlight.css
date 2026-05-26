@@ -67,7 +67,7 @@ starlight-theme-select {
 }
 
 :root {
-  --sl-font: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  --sl-font: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
 /* Safety net: ensure grain/vignette pseudo-elements never render on Starlight pages.
