@@ -12,9 +12,6 @@ const { before, after, label = 'Before / After' } = Astro.props
   !before || !after ? (
     <div class="relative overflow-hidden rounded-2xl border border-dashed border-vk-border/10 bg-vk-surface-2 p-12 text-center">
       <div class="section-overline">{label}</div>
-      <p class="mt-2 text-sm text-vk-text-muted">
-        Drag the slider to compare the original against the restored output.
-      </p>
       <div class="mx-auto mt-6 flex h-48 max-w-lg items-center justify-center rounded-xl border border-vk-border/5 bg-black/20">
         <span class="font-display text-3xl italic text-vk-text-subtle/30">VS</span>
       </div>
