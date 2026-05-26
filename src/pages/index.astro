@@ -236,9 +236,8 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
             </figure>
           ))}
         </div>
-        <div class="mt-10">
-          <ComparisonSlider label="Interactive comparison" />
-        </div>
+        <SectionHeading title="Interactive comparison" />
+        <ComparisonSlider />
       </div>
     </section>
 
@@ -290,7 +289,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
           ))}
         </div>
         <div class="mt-6 rounded-lg border border-dashed border-vk-border/10 px-4 py-3 text-center text-sm text-vk-text-muted transition-colors hover:border-vk-accent/20">
-          + Custom filters — write your own VapourSynth scripts
+          + Custom filters
         </div>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={`${base}filters/reference/`} class={ctaPrimaryClass}>
@@ -317,9 +316,7 @@ const ctaSecondaryClass = 'inline-flex items-center gap-2 rounded-lg border bord
           </div>
           <div class={chipClass}>AnimeSharpV4</div>
           <div class={chipClass}>UltraSharpV2</div>
-          <div class="rounded-lg border border-dashed border-vk-border/10 px-4 py-2 text-sm text-vk-text-muted transition-colors hover:border-vk-accent/20">
-            + Custom ONNX
-          </div>
+
         </div>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={`${base}models/included/`} class={ctaPrimaryClass}>
